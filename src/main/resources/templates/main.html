@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Главная</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}">
+
+</header>
+
+  <div class="container">
+    <h1>Добро пожаловать!</h1>
+    <div class="row">
+      <div class="col">
+        <h2>Новые вопросы</h2>
+        <div id="new-questions">
+          <div class="container">
+
+          </div>
+          <questionFragment th:each="question : ${newQuestions}"
+                            th:insert="~{blocks/questionFragment :: questionFragment}">
+
+          </questionFragment>
+        </div>
+      </div>
+      <div class="col">
+        <h2>Популярные вопросы</h2>
+        <div id="popular-questions">
+          <div class="container">
+
+          </div>
+          <questionFragment th:each="question : ${popularQuestions}"
+                            th:insert="~{blocks/questionFragment :: questionFragment}">
+
+          </questionFragment>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  <footer>-->
+<!--    &copy; 2024 Question-Answer Network. All rights reserved.-->
+<!--  </footer>-->
+<footer th:insert="~{blocks/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

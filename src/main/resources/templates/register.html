@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Регистрация</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+    .registration-form {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border: 1px solid #eeeeee;
+      border-radius: 5px;
+      background-color: #fafafa;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+    .form-group .register-button {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">Question-Answer Network</a>-->
+<!--    <ul class="navbar-nav ml-auto">-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">Login</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">Sign Up</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+<header th:insert="~{blocks/header :: header}">
+
+</header>
+  <div class="container">
+    <div class="registration-form">
+      <h2>Регистрация</h2>
+      <form action="/registration" method="post" modelAttribute="userForm">
+        <div class="form-group">
+          <label for="firstname">Имя:</label>
+          <input type="text" id="firstname" name="firstname" required>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Фамилия:</label>
+          <input type="text" id="lastname" name="lastname" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Подтверждение пароля:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        <div class="form-group register-button">
+          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<footer th:insert="~{blocks/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

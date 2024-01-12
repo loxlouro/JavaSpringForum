@@ -1,0 +1,166 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<div th:fragment="header">
+    <header>
+        <head>
+<!--            <title>Question-Answer Network</title>-->
+            <!-- Add Bootstrap CSS link here -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+            <style>
+                .navbar {
+                  background-color: #ffffff; /* slightly darker background color */
+                }
+                footer {
+                  background-color: #f8f9fa; /* matching background color for footer */
+                  padding: 20px;
+                  text-align: center;
+                }
+                .login-form {
+                  max-width: 400px;
+                  margin: 50px auto;
+                  padding: 30px;
+                  border: 1px solid #eeeeee;
+                  border-radius: 5px;
+                  background-color: #fafafa;
+                }
+                .form-group {
+                  margin-bottom: 20px;
+                }
+                .form-group label {
+                  font-weight: bold;
+                }
+                .form-group input {
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 5px;
+                  border: 1px solid #dddddd;
+                }
+                .form-group .login-button {
+                  text-align: center;
+                }
+            </style>
+
+        </head>
+
+
+<!--        <li class="nav-item">-->
+
+<!--        </li>-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Сеть Вопрос-Ответ</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/ask-question">Задать вопрос</a>
+                </li>
+                <li>
+                    <form th:action="@{'/search'}"
+                          method="get" modelAttribute="searchForm">
+                        <input type="text" id="searchForm" name="searchForm" placeholder="Введите запрос">
+                        <button type="submit">Поиск</button>
+                    </form>
+                </li>
+
+            </ul>
+            <div th:unless="${#authorization.expression('isAuthenticated()')}"
+                 class="text fw-light fs-6 lh-1">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Зарегистрироваться</a>
+                </li>
+                </ul>
+            </div>
+            <div th:if="${#authorization.expression('isAuthenticated()')}" class="text fw-light fs-6 lh-1">
+<!--                <img th:src="@{'/images/profile_image/'+${id}}" alt="Аватар">-->
+                <span th:remove="tag" sec:authentication="name">thymeleaf</span>
+                <a class="nav-link" href="/logout">Выйти</a>
+            </div>
+<!--            <ul class="navbar-nav ml-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Sign Up</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+        </nav>
+<!--        <nav class="navbar navbar-expand-lg navbar-light bg-dark">-->
+<!--            <a class="navbar-brand" href="/">Приемная комиссия ВУЗа</a>-->
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <div sec:authorize="hasAuthority('USER')" class="tilt pic">-->
+<!--              -->
+<!--                        <ul class="navbar-nav">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/application/add">Подать заявление</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/">Главная</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/applstats">Специальности</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/contacts">Контакты</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+
+<!--                    <div sec:authorize="hasAuthority('ADMIN')" class="tilt pic" id="whoKnow">-->
+<!--                        &lt;!&ndash;                             th:unless="${viewAvailableWhisky.quantityWhisky} == 0">&ndash;&gt;-->
+<!--                        <ul class="navbar-nav">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/admin/faculties">Факультеты</a>-->
+<!--                            </li>-->
+<!--                            &lt;!&ndash;                            <li class="nav-item">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <a class="nav-link" href="/specialnosti">Специальности</a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/admin/workers">Сотрудники</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div sec:authorize="hasAuthority('WORKER')" class="tilt pic">-->
+<!--                        &lt;!&ndash;                         th:unless="${viewAvailableWhisky.quantityWhisky} == 0">&ndash;&gt;-->
+<!--                        <ul class="navbar-nav">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/application/check/">Проверка заявлений</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/applstats">Специальности</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" href="/contacts">Контакты</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <div th:unless="${#authorization.expression('isAuthenticated()')}"-->
+<!--                         class="text fw-light fs-6 lh-1">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/login">Войти</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="/registration">Зарегистрироваться</a>-->
+<!--                        </li>-->
+<!--                    </div>-->
+<!--                    <li class="nav-item">-->
+<!--                        <div th:if="${#authorization.expression('isAuthenticated()')}" class="text fw-light fs-6 lh-1">-->
+<!--                            <span th:remove="tag" sec:authentication="name">thymeleaf</span>-->
+<!--                            <a class="nav-link" href="/logout">Выйти</a>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </nav>-->
+
+    </header>
+</div>

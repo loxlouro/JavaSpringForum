@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Main-Class: com.example.register2.Register2Application
+Class-Path: spring-boot-starter-aop-3.1.4.jar xbean-asm7-shaded-4.12.jar
+  jakarta.xml.bind-api-4.0.1.jar spring-boot-starter-data-elasticsearch-
+ 3.1.4.jar jaxb-runtime-4.0.3.jar spring-security-crypto-6.1.4.jar sprin
+ g-data-jpa-3.1.4.jar spring-aop-6.0.12.jar spring-data-jdbc-3.1.4.jar j
+ boss-logging-3.5.3.Final.jar jackson-module-parameter-names-2.15.2.jar 
+ aspectjweaver-1.9.20.jar hibernate-core-6.2.9.Final.jar attoparser-2.0.
+ 7.RELEASE.jar jackson-annotations-2.15.2.jar commons-pool2-2.11.1.jar s
+ pring-data-elasticsearch-5.1.4.jar jakarta.json-api-2.1.2.jar logback-c
+ lassic-1.4.11.jar spring-expression-6.0.12.jar spring-context-6.0.12.ja
+ r spring-boot-starter-json-3.1.4.jar jackson-datatype-jsr310-2.15.2.jar
+  jandex-3.0.5.jar tomcat-embed-core-10.1.13.jar lombok-1.18.30.jar thym
+ eleaf-spring6-3.1.2.RELEASE.jar spring-data-commons-3.1.4.jar spring-bo
+ ot-starter-data-jpa-3.1.4.jar spring-boot-starter-mail-3.1.4.jar spring
+ -orm-6.0.12.jar log4j-api-2.20.0.jar commons-collections4-4.3.jar sprin
+ g-beans-6.0.12.jar jakarta.inject-api-2.0.1.jar spring-security-web-6.1
+ .4.jar HikariCP-5.0.1.jar spring-tx-6.0.12.jar spring-data-relational-3
+ .1.4.jar spring-boot-starter-security-3.1.4.jar spring-security-config-
+ 6.1.4.jar jakarta.annotation-api-2.1.1.jar jul-to-slf4j-2.0.9.jar sprin
+ g-boot-starter-3.1.4.jar micrometer-observation-1.11.4.jar jackson-core
+ -2.15.2.jar spring-boot-starter-data-jdbc-3.1.4.jar spring-boot-autocon
+ figure-3.1.4.jar spring-boot-starter-web-3.1.4.jar spring-boot-starter-
+ jdbc-3.1.4.jar spring-boot-starter-validation-3.1.4.jar spring-boot-dev
+ tools-3.1.4.jar elasticsearch-java-8.7.1.jar httpcore-4.4.16.jar byte-b
+ uddy-1.14.8.jar jakarta.mail-1.1.0.jar spring-context-support-6.0.12.ja
+ r parsson-1.0.0.jar spring-boot-starter-thymeleaf-3.1.4.jar jsr305-3.0.
+ 2.jar unbescape-1.1.6.RELEASE.jar geronimo-jpa_2.2_spec-1.0.jar jackson
+ -datatype-jdk8-2.15.2.jar slf4j-api-2.0.9.jar spring-boot-starter-loggi
+ ng-3.1.4.jar hibernate-validator-8.0.1.Final.jar httpasyncclient-4.1.5.
+ jar serp-1.15.1.jar angus-activation-2.0.1.jar tomcat-embed-el-10.1.13.
+ jar txw2-4.0.3.jar spring-boot-3.1.4.jar geronimo-jta_1.1_spec-1.1.1.ja
+ r classmate-1.5.1.jar jakarta.activation-api-2.1.2.jar spring-core-6.0.
+ 12.jar jackson-databind-2.15.2.jar httpclient-4.5.13.jar tomcat-embed-w
+ ebsocket-10.1.13.jar thymeleaf-3.1.2.RELEASE.jar commons-codec-1.15.jar
+  logback-core-1.4.11.jar spring-boot-starter-tomcat-3.1.4.jar jakarta.v
+ alidation-api-3.0.2.jar spring-jcl-6.0.12.jar snakeyaml-1.33.jar spring
+ -jdbc-6.0.12.jar elasticsearch-rest-client-8.7.1.jar spring-aspects-6.0
+ .12.jar antlr4-runtime-4.10.1.jar thymeleaf-extras-springsecurity6-3.1.
+ 2.RELEASE.jar jakarta.persistence-api-3.1.0.jar jaxb-core-4.0.3.jar htt
+ pcore-nio-4.4.16.jar spring-web-6.0.12.jar openjpa-3.1.0.jar istack-com
+ mons-runtime-4.1.2.jar geronimo-jms_1.1_spec-1.1.1.jar hibernate-common
+ s-annotations-6.0.6.Final.jar micrometer-commons-1.11.4.jar spring-webm
+ vc-6.0.12.jar mysql-connector-j-8.0.33.jar jakarta.transaction-api-2.0.
+ 1.jar log4j-to-slf4j-2.20.0.jar spring-security-core-6.1.4.jar
+

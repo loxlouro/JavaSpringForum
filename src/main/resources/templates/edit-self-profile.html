@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Редактирование профиля</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+    .profile-form {
+      max-width: 600px;
+      margin: 50px auto;
+      border: 1px solid #eeeeee;
+      border-radius: 5px;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+    .profile-details .avatar {
+      margin-bottom: 30px;
+    }
+    .profile-details .avatar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    .profile-form input[type="text"],
+    .profile-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+    }
+    .profile-form .btn-save {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+    .profile-form .btn-upload {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<header th:insert="~{components/header :: header}">
+
+</header>
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">Question-Answer Network</a>-->
+<!--  </nav>-->
+  <div class="container">
+    <form class="profile-form">
+      <div class="avatar">
+        <img src="avatar.jpg" alt="Аватар пользователя">
+        <button class="btn btn-upload">Загрузить новый аватар</button>
+      </div>
+      <input type="text" name="status" placeholder="Новый статус">
+      <textarea name="about" placeholder="О себе"></textarea>
+      <button class="btn btn-save">Сохранить</button>
+    </form>
+  </div>
+<!--  <footer>-->
+<!--    &copy; 2024 Question-Answer Network. All rights reserved.-->
+<!--  </footer>-->
+<footer th:insert="~{components/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

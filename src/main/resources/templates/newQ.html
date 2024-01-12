@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:form="http://www.w3.org/1999/html">
+<head>
+  <title>Задать вопрос</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+    .question-form {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      border: 1px solid #eeeeee;
+      border-radius: 5px;
+      background-color: #fafafa;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-group .form-check {
+      margin-top: 10px;
+    }
+    .form-group input[type="text"],
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+    .form-group .submit-button {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header th:insert="~{blocks/header :: header}">
+
+</header>
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">Question-Answer Network</a>-->
+<!--  </nav>-->
+  <div class="container">
+    <div class="question-form">
+      <h2>Задать вопрос</h2>
+      <form action="/ask-question" method="post" modelAttribute="questionForm">
+        <div class="form-group">
+          <label for="QuestionHead">Заголовок вопроса:</label>
+          <input type="text" id="QuestionHead" name="QuestionHead" required>
+        </div>
+        <div class="form-group">
+          <label for="QuestionBody">Полный текст вопроса:</label>
+          <textarea id="QuestionBody" name="QuestionBody" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="difficulty">Сложность вопроса:</label>
+          <select id="difficulty" name="difficulty" required>
+            <option th:each="difficulty : ${difficulties}"
+                    th:value="${difficulty.name}"
+                    th:text="${difficulty}" th:selected="${selected}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tagString">Теги вопроса:</label>
+          <input type="text" id="tagString" name="tagString" required>
+          <small class="form-text text-muted">Введите теги, разделяя их запятой.</small>
+        </div>
+        <div class="form-group submit-button">
+          <button type="submit" class="btn btn-primary">Подтвердить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--  <footer>-->
+<!--    &copy; 2024 Question-Answer Network. All rights reserved.-->
+<!--  </footer>-->
+<footer th:insert="~{blocks/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

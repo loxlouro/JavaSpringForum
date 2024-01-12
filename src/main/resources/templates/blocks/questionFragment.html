@@ -1,0 +1,31 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<div th:fragment="questionFragment">
+    <questionFragment>
+        <div  th:fragment="questionFragment(question)">
+            <a th:href="@{/questions/{id}(id=${question.id})}">
+                <h3 th:text="${question.questionHead}" style="color: #00008B">Заголовок вопроса</h3>
+<!--            <p th:text="${#strings.substring(question.questionBody, 0, 30)}">Первые 30 символов основного текста вопроса</p>-->
+                        <span th:text="${question.author.firstname}+${' '}+${question.author.lastname}" style="color: #00008B">Никнейм автора вопроса</span>
+                    <a th:text="${question.getFormattedDateOfCreation()}">Дата создания вопроса</a>
+
+                    <!--                <img th:src="${question.author.profileImage.id}"-->
+                    <!--                     th:alt="${question.author.firstname}+@{ }+${question.author.lastname}"-->
+                    <!--                     style="width: 50px; height: 50px;"> Автор:-->
+
+
+                <p th:text="${question.comments.size()}" >Количество ответов</p>
+            <div>
+                <span th:each="tag : ${question.tags}">
+                    <a th:href="@{/tags/{id}(id=${tag.id})}"
+                    style="display: inline-block; padding: 5px; margin-right: 5px; background-color: lightgray; color: #00008B"
+                    th:text="${tag.name}">Тег</a>
+                </span>
+<!--                <span th:each="tag : ${question.tags}" th:text="${tag.name}" style="display: inline-block; padding: 5px; margin-right: 5px; background-color: lightgray;">Тег</span>-->
+            </div>
+
+        </a>
+        </div>
+    </questionFragment>
+</div>

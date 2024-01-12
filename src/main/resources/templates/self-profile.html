@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Просмотр профиля</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+    .profile-details {
+      max-width: 600px;
+      margin: 50px auto;
+      border: 1px solid #eeeeee;
+      border-radius: 5px;
+      background-color: #fafafa;
+      display: flex;
+    }
+    .profile-details .avatar {
+      margin: 30px;
+    }
+    .profile-details .avatar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    .profile-details .user-details {
+      margin: 30px;
+    }
+    .profile-details .user-details h2 {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .user-status {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .about-me {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .answer {
+      margin-bottom: 5px;
+    }
+    .profile-settings {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .profile-settings button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">Question-Answer Network</a>-->
+<!--  </nav>-->
+<header th:insert="~{blocks/header :: header}">
+
+</header>
+  <div class="container">
+    <form th:action="@{/user/profile/}+${seenProfile.id}"
+          method="post" enctype="multipart/form-data" modelAttribute="seenProfile">
+<!--          th:object="${seenProfile}" -->
+
+    <div class="profile-details">
+      <div class="user-details">
+          <div class="avatar">
+              <!--        <img src="avatar.jpg" alt="Аватар пользователя">-->
+              <!--          <form th:action="@{'/images/profile_image/'}+${seenProfile.id}+@{'/temp'}"-->
+              <!--                method="post" enctype="multipart/form-data">-->
+              <!--               formaction="@{'/images/profile_image/'}+${seenProfile.id}+@{'/temp'}"-->
+              <!--               formmethod="post" -->
+              <!--          </form>-->
+              <img th:src="@{'/images/profile_image/'+${seenProfile.id}}" alt="Аватар">
+              <input type="file" id="multipart" name="multipart" accept=".jpg, .jpeg, .png, .gif">
+          </div>
+        <h2 th:text="${seenProfile.email}">Имя пользователя</h2>
+<!--        <div th:switch="${seenProfile.profileStatus != null}">-->
+<!--          <div th:case="true" class="user-status">-->
+<!--            <p>Познал истинную силу</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div th:switch="${seenProfile.profileStatus != null}">-->
+<!--          <div th:case="true" class="about-me">-->
+<!--            <h5 th:text="${seenProfile.profileStatus}">Добавьте пользовательский статус</h5>-->
+        <label for="firstName">Имя:</label><br/>
+        <input type="text" id="firstName" th:field="${seenProfile.firstname}" />
+        <br/>
+        <label for="lastName">Фамилия:</label><br/>
+        <input type="text" id="lastName" th:field="${seenProfile.lastname}" />
+        <br/>
+        <label for="profileStatus">Пользовательский статус:</label><br/>
+        <input type="text" id="profileStatus" th:field="${seenProfile.profileStatus}" />
+        <br/>
+        <div>
+          <label for="about">Обо мне:</label><br/>
+          <textarea id="about" name="aboutMe" rows="3" cols="40" th:text="${seenProfile.aboutMe}"></textarea>
+        </div>
+
+        <input type="submit"/>
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="user-status">-->
+<!--          <p>Пользовательский статус</p>-->
+<!--        </div>-->
+<!--        <div class="about-me">-->
+<!--          <p>Краткая информация о себе</p>-->
+<!--        </div>-->
+
+
+<!--          <div>-->
+<!--            <label for="avatar">Avatar:</label>-->
+<!--            <input type="file" id="avatar" name="avatar" th:accept="image/*" />-->
+<!--            <br/>-->
+<!--          </div>-->
+
+<!--          <div>-->
+<!--            <label>Status:</label>-->
+<!--            <input type="radio" id="active" value="ACTIVE" th:field="*{status}" -->
+<!--                   formaction="/user/profile/{seenProfile.id}/settings" formmethod="post" />-->
+<!--            <label for="active">Active</label>-->
+<!--            <input type="radio" id="inactive" value="INACTIVE" th:field="*{status}" />-->
+<!--            <label for="inactive">Inactive</label>-->
+<!--          </div>-->
+
+<!--        <div class="answers">-->
+<!--          <a href="#">Ответ 1</a>-->
+<!--          <a href="#">Ответ 2</a>-->
+<!--          <a href="#">Ответ 3</a>-->
+<!--        </div>-->
+      </div>
+    </div>
+    </form>
+    <h4>Самые оцененные ответы:</h4>
+    <div th:switch="${seenProfile.comments != null}">
+      <div th:case="true" class="answers">
+<!--          <h4>Самые оцененные ответы:</h4>-->
+          <div class="answers" th:each="comment : ${topComments}">
+              <div>
+                  <a th:href="@{/questions/{id}(id=${comment.question.id})}" th:text="${comment.commentBody}">math.h — это для кода, который должен быть одновременно Си и Си++. Также разглючка в некоторых версиях Embarcadero.cmath — рекомендуется в Си++.
+                  </a>
+
+              </div><br/>
+<!--        <a href="#">Ответ 1</a>-->
+<!--        <a href="#">Ответ 2</a>-->
+<!--        <a href="#">Ответ 3</a>-->
+      </div>
+    </div>
+<!--    <div class="profile-settings">-->
+<!--      <button class="btn btn-primary">Настройки профиля</button>-->
+<!--    </div>-->
+  </div>
+<!--  <footer>-->
+<!--    &copy; 2024 Question-Answer Network. All rights reserved.-->
+<!--  </footer>-->
+<footer th:insert="~{blocks/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

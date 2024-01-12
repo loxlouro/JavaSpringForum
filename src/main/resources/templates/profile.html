@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Просмотр профиля</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #ffffff; /* slightly darker background color */
+    }
+    footer {
+      background-color: #f8f9fa; /* matching background color for footer */
+      padding: 20px;
+      text-align: center;
+    }
+    .profile-details {
+      max-width: 600px;
+      margin: 50px auto;
+      border: 1px solid #eeeeee;
+      border-radius: 5px;
+      background-color: #fafafa;
+      display: flex;
+    }
+    .profile-details .avatar {
+      margin: 30px;
+    }
+    .profile-details .avatar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    .profile-details .user-details {
+      margin: 30px;
+    }
+    .profile-details .user-details h2 {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .user-status {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .about-me {
+      margin-bottom: 20px;
+    }
+    .profile-details .user-details .answer {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header th:insert="~{blocks/header :: header}">
+
+</header>
+  <div class="container">
+    <div class="profile-details">
+
+      <div class="avatar">
+        <img th:src="@{'/images/profile_image/'+${seenProfile.id}}" alt="Аватар">
+      </div>
+      <div class="user-details">
+        <h2 th:text="${seenProfile.firstname}+${' '}+${seenProfile.lastname}">Иллидан Ярость бури</h2>
+          <div th:switch="${seenProfile.profileStatus != null}">
+              <div th:case="true" class="user-status">
+                      <p th:text="${seenProfile.profileStatus}">Познал истинную силу</p>
+              </div>
+          </div>
+          <div th:switch="${seenProfile.aboutMe != null}">
+              <div th:case="true" class="about-me">
+                  <p th:text="${seenProfile.aboutMe}">	Предатель, Повелитель Запределья, Охотник на демонов, Правитель Наг, лидер Пылающего Легиона в Запределье и Азероте.</p>
+
+              </div>
+          </div>
+<!--        <div class="about-me">-->
+<!--          </div>-->
+          <h4>Самые оцененные ответы:</h4>
+                  <div class="answers" th:each="comment : ${topComments}">
+<div>
+          <a th:href="@{/questions/{id}(id=${comment.question.id})}" th:text="${comment.commentBody}">math.h — это для кода, который должен быть одновременно Си и Си++. Также разглючка в некоторых версиях Embarcadero.cmath — рекомендуется в Си++.
+</a>
+
+</div><br/>
+<!--<div>-->
+<!--          <a href="#">В вашем коде строка не может заканчиваться восклицательным знаком. В конце строки у вас всегда либо точка, либо точка с запятой, либо знак вопроса. -->
+<!--</a>-->
+<!--</div>-->
+<!--<div>-->
+<!--          <a href="#">Ты потерпел неудачу, страж!-->
+<!--</a>-->
+<!--</div>-->
+<!--        </div>-->
+      </div>
+
+    </div>
+<!--      <h4>Самые оцененные ответы:</h4>-->
+      <!--        <div class="answers" th:each="comment : ${topComments}">-->
+<!--      <commentFragment class="answers" th:each="comment : ${topComments}"-->
+<!--                       th:insert="~{blocks/commentFragment :: commentFragment}">-->
+
+<!--      </commentFragment>-->
+  </div>
+<!--  <footer>-->
+<!--    &copy; 2024 Question-Answer Network. All rights reserved.-->
+<!--  </footer>-->
+<footer th:insert="~{blocks/footer :: footer}">
+
+</footer>
+  <!-- Add Bootstrap JS script here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<div th:fragment="commentFragment">
+    <commentFragment>
+        <div  th:fragment="commentFragment(comment)">
+<!--            <a th:href="@{/questions/{id}(id=${question.id})}">-->
+                <h6 th:text="${comment.commentBody}">Текст ответа</h6>
+                <!--            <p th:text="${#strings.substring(question.questionBody, 0, 30)}">Первые 30 символов основного текста вопроса</p>-->
+                <a th:href="@{/user/profile/}+${comment.author.id}" class="author"
+                    th:text="${comment.author.firstname}+${' '}+${comment.author.lastname}"
+                      style="color: #00008B">Никнейм автора вопроса</a>
+                <a th:text="${comment.getFormattedDateOfCreation()}">Дата создания ответа</a>
+
+                <!--                <img th:src="${question.author.profileImage.id}"-->
+                <!--                     th:alt="${question.author.firstname}+@{ }+${question.author.lastname}"-->
+                <!--                     style="width: 50px; height: 50px;"> Автор:-->
+
+            <form class="like-button" th:action="@{'/question/comments/'}+${comment.id}+@{'/like'}"
+            method="post">
+<!--                <p  >Количество оценок</p>-->
+                <button type="submit" class="btn btn-sm btn-primary"
+                        th:text="${comment.likes.size()}+${' Лайк'} ">Лайк</button>
+            </form>
+                <div>
+<!--                <span th:each="tag : ${question.tags}">-->
+<!--                    <a th:href="@{/tags/{id}(id=${tag.id})}"-->
+<!--                       style="display: inline-block; padding: 5px; margin-right: 5px; background-color: lightgray; color: #00008B"-->
+<!--                       th:text="${tag.name}">Тег</a>-->
+<!--                </span>-->
+                    <!--                <span th:each="tag : ${question.tags}" th:text="${tag.name}" style="display: inline-block; padding: 5px; margin-right: 5px; background-color: lightgray;">Тег</span>-->
+                </div>
+        </div>
+    </commentFragment>
+</div>
